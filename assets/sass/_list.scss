@@ -1,0 +1,56 @@
+@mixin list-button($max: 3, $width: rem-calc(50)) {
+	@for $i from 1 through $max {
+		&-#{$i} {
+			width: $width * $i;
+			
+		}
+	}
+}
+
+.list {
+	@extend .no-bullet;
+	li {
+		line-height: 120%;
+		border-bottom: 1px solid $primary-color;
+	}
+	&-item {
+		padding: 1rem 1.5rem;
+		// background-color: $medium-gray;
+
+		div {
+			-webkit-transition: transform .3s ease-in-out; /* Safari */
+		    transition: transform .3s ease-in-out;
+		}
+
+		&.show div {
+			transform: translateX(-50px);
+		}
+	}
+
+	&-button {
+		background-color: $light-gray;
+		position: relative;
+		span {
+			position: absolute;
+			@include absolute-center;
+		}
+
+		@include list-button(3);
+	}
+}
+
+
+
+.slide-enter-active, .slide-leave-active {
+  -webkit-transition: all .3s ease-in-out; /* Safari */
+		    transition: all .3s ease-in-out;
+}
+// .slide-enter-to {
+// 	transform: translateX(-50px);
+// }
+.slide-enter {
+	transform: translateX(50px);
+}
+ .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: translateX(50px);
+}
